@@ -1,5 +1,4 @@
-﻿using com.surfm.yoar;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using surfm.tool;
 using System;
 using System.Collections;
@@ -9,22 +8,27 @@ using UnityEngine;
 namespace com.surfm.account {
     public class AccountLoader {
         private static readonly string BYTE_KEY = "87654321";
-        public static readonly string PATH = AccountConstant.getAccountLoadPath( "/sdcard/.Yoar/Account.ya");
+        //public static readonly string PATH = AccountConstant.getAccountLoadPath( "/sdcard/.Yoar/Account.ya");
         public readonly static AccountLoader instance = new AccountLoader();
         private Account account;
         private List<Action> observers = new List<Action>();
 
         private AccountLoader() { }
 
+        internal static bool isEmpty() {
+            return AccountConstant.isExistAccountData();
+        }
 
         private void saveCurrent() {
             account = getCurrentAccount();
             string plain = JsonConvert.SerializeObject(account);
             string s = CommUtils.encryptBase64(getSKey(), BYTE_KEY, plain);
-            FileInfo file = new FileInfo(PATH);
-            file.Directory.Create();
-            File.WriteAllText(PATH, s);
+            AccountConstant.saveAccountFile(s);
             observers.ForEach(a => { a(); });
+        }
+
+        internal static void removeData() {
+            AccountConstant.saveAccountFile(string.Empty);
         }
 
         public void addObserver(Action a) {
@@ -43,10 +47,10 @@ namespace com.surfm.account {
         }
 
         private Account load() {
-            FileInfo fi = new FileInfo(PATH);
-            if (!fi.Exists) return createNewOne();
+
+            if (!AccountConstant.isExistAccountData()) return createNewOne();
             try {
-                string s = File.ReadAllText(PATH);
+                string s = AccountConstant.loadAccountFile();
                 string plain = CommUtils.decryptBase64(getSKey(), BYTE_KEY, s);
                 return JsonConvert.DeserializeObject<Account>(plain);
             } catch (Exception e) {
