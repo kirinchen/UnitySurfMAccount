@@ -33,10 +33,10 @@ namespace com.surfm.account {
 
         private void doLogin() {
             Loading.getInstance().show(true);
-            AccountService.UserLoginFormDto d = new AccountService.UserLoginFormDto();
+            UserLoginFormDto d = new UserLoginFormDto();
             d.email = email.getValue();
             d.password = password.getValue();
-            AccountService.getInstance().login(XGunServiceHandle.Mode.Base, d, this);
+            AccountService.getInstance().login(ServiceHandle.Mode.Base, d, this);
         }
 
         public void onError(Exception e) {
@@ -51,15 +51,12 @@ namespace com.surfm.account {
 
         public void onOk(LoginResultDto dto) {
             Loading.getInstance().show(false);
-          
-            /* TODO 資料寫入到account */
-
             Debug.Log("onOk=" + dto);
-            am.switchPage(am.helloPage);
+            am.switchHelloPage();
         }
 
         public void goToSignup() {
-            am.switchPage(am.signupPage);
+            am.switchSignupPage();
         }
     }
 }

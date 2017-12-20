@@ -24,9 +24,9 @@ namespace com.surfm.account {
 
         public void reloadBotCode() {
             setupLoadingUi(true);
-            rest.loadRes("/api/v1/public/derobotcode?key=" + key, (w) => {
+            AccountService.getInstance().loadDebotCode(key, w => {
                 setupLoadingUi(false);
-                img.texture = w.DataAsTexture2D;
+                img.texture = w;
             }, onError);
         }
 
@@ -35,7 +35,7 @@ namespace com.surfm.account {
         }
 
         private void setupLoadingUi(bool loading) {
-            reloadButton.gameObject.SetActive(!loading);
+            reloadButton.interactable = (!loading);
             img.texture = loading ? orgNoneTexture : img.texture;
             LoadingImg.gameObject.SetActive(loading);
         }

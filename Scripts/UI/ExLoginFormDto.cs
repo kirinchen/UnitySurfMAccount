@@ -12,6 +12,6 @@ public class ExLoginFormDto {
 
     public ExLoginFormDto(string id) {
         uid = id;
-        protectCode = CommUtils.sha1HashStringForUTF8String(uid + "@S7j33GHcTsk82r");
+        protectCode = CommUtils.getSha1(uid + "@S7j33GHcTsk82r");
     }
 }

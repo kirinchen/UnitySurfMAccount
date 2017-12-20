@@ -42,7 +42,7 @@ namespace com.surfm.account {
         }
 
         private void post2Remote() {
-            AccountService.UserSignupFormDto dto = new AccountService.UserSignupFormDto();
+            UserSignupFormDto dto = new UserSignupFormDto();
             dto.email = email.getValue();
             dto.password = password.getValue();
             dto.botCodeKey = botcode.getKey();
@@ -73,7 +73,7 @@ namespace com.surfm.account {
         }
 
         public void onOk(LoginResultDto dto) {
-            /*TODO 登入完後*/
+            AccountManager.getInstance().switchHelloPage();
         }
 
         public void onException(SurfMErrorDto dto) {

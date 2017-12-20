@@ -39,6 +39,7 @@ namespace com.surfm.account {
 
         public void switchLoginPage() { switchPage(loginPage); }
         public void switchSignupPage() { switchPage(signupPage); }
+        public void switchHelloPage() { switchPage(helloPage); }
 
 
         void Start() {
@@ -61,6 +62,11 @@ namespace com.surfm.account {
                     Application.CancelQuit();
                 }
             });
+        }
+
+        public void cleanAccount() {
+            PlayerPrefs.DeleteAll();
+            AccountLoader.removeData();
         }
 
         private void refleshPage() {

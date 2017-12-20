@@ -5,7 +5,7 @@ using System.IO;
 using UnityEngine;
 namespace com.surfm.account {
     public class AccountConstant : MonoBehaviour {
-
+        public static readonly string KEY_SAVE_PREFS = "@<Account>";
         public static bool DEV { get { return get().dev; } }
         public static string ACCOUNT_LOAD_SUFFIX { get { return get().accountLoadSuffix; } }
 
@@ -24,14 +24,22 @@ namespace com.surfm.account {
         }
 
         internal static void saveAccountFile(string s) {
+#if UNITY_WEBGL
+            PlayerPrefs.SetString(KEY_SAVE_PREFS,s);
+#else
             string p = getAccountLoadPath(PATH);
             FileInfo file = new FileInfo(p);
             file.Directory.Create();
             File.WriteAllText(p, s);
+#endif
         }
 
         internal static string loadAccountFile() {
+#if UNITY_WEBGL
+            return PlayerPrefs.GetString(KEY_SAVE_PREFS);
+#else
             return File.ReadAllText(getAccountLoadPath(PATH));
+#endif
         }
 
         /*@TODO 加入 comm config to set save where */

@@ -10,6 +10,9 @@ namespace com.surfm.account {
         private static readonly string BYTE_KEY = "87654321";
         //public static readonly string PATH = AccountConstant.getAccountLoadPath( "/sdcard/.Yoar/Account.ya");
         public readonly static AccountLoader instance = new AccountLoader();
+
+
+
         private Account account;
         private List<Action> observers = new List<Action>();
 
@@ -17,6 +20,12 @@ namespace com.surfm.account {
 
         internal static bool isEmpty() {
             return AccountConstant.isExistAccountData();
+        }
+
+        internal void setAccount(Account a) {
+            if (a == null) throw new NullReferenceException("a=null");
+            account = a;
+            saveCurrent();
         }
 
         private void saveCurrent() {

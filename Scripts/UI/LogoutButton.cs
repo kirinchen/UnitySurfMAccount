@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using com.surfm.account;
 
 namespace com.surfm.account {
     public class LogoutButton : MonoBehaviour {
@@ -19,7 +20,7 @@ namespace com.surfm.account {
             bool selfLogined = false;
             LoginResultDto rd = null;
             if (AccountService.getInstance().isLogin()) {
-                rd = AccountService.getInstance().loadLoginResult();
+                rd = AccountLoader.getAccount().loginResult;
                 if (rd.accountType == LoginType.SLEF) {
                     usernameText.text = rd.username;
                     selfLogined = true;
