@@ -26,15 +26,14 @@ namespace com.surfm.account {
                     selfLogined = true;
                 }
             }
-            button.SetActive(selfLogined );
+            button.SetActive(selfLogined);
         }
 
 
         public void logout() {
-
             AccountLoader.removeData();
             AccountService.getInstance().logout();
-      
+            AccountManager.getInstance().switchLoginPage();
         }
 
 

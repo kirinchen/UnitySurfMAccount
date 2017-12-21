@@ -26,6 +26,7 @@ namespace com.surfm.account {
             this.password = password;
             this.loginResult = lr;
             pid = getPidByMail(email);
+            userTitle = pid;
         }
 
         internal Account() {

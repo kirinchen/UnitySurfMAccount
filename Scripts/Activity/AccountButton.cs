@@ -46,7 +46,7 @@ namespace com.surfm.account {
         }
 
         public void goToAccountPage() {
-            AccountManager.goAccoutPage();
+           // AccountManager.goAccoutPage(null);
         }
 
 

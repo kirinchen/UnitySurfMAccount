@@ -8,7 +8,7 @@ using surfm.tool.i18n;
 namespace com.surfm.account {
     public class AccountManager : MonoBehaviour {
         private static AccountManager instance;
-        private static string goBackPage = string.Empty;
+        internal static ActivityConfig config { get; private set; }
         public DialogManager dm;
         public PageHandler loginPage;
         public PageHandler signupPage;
@@ -82,13 +82,13 @@ namespace com.surfm.account {
 
         public void exit() {
             AccountService.getInstance().abortAll();
-            SceneManager.LoadScene(goBackPage);
-            goBackPage = string.Empty;
+            SceneManager.LoadScene(config.goBackPage);
+            config = new ActivityConfig();
         }
 
-        public static void goAccoutPage() {
+        public static void goAccoutPage(ActivityConfig ac) {
             Scene scene = SceneManager.GetActiveScene();
-            goBackPage = scene.name;
+            ac.goBackPage = scene.name;
             SceneManager.LoadScene("Account");
         }
 

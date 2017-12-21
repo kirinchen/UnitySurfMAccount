@@ -8,7 +8,6 @@ namespace com.surfm.account {
     public class Loginer : PageHandler, AccountService.LoginHandler {
 
         public static readonly string KEY_USER_PASS_WRONG = "AccoutPassWrong";
-        public DialogManager dm;
         private AccountManager am;
         public EmailInputer email;
         public Passworder password;
@@ -23,7 +22,7 @@ namespace com.surfm.account {
             if (AccountLoader.isEmpty()) {
                 doLogin();
             } else {
-                dm.get<YesNoDialog>().show( I18n.get("IfOverwriteData"), (b) => {
+                am.dm.get<YesNoDialog>().show( I18n.get("IfOverwriteData"), (b) => {
                     if (b) {
                         doLogin();
                     }
