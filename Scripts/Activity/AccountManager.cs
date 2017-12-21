@@ -4,15 +4,17 @@ using System;
 using UnityEngine.SceneManagement;
 using surfm.tool;
 using surfm.tool.i18n;
+using UnityEngine.UI;
 
 namespace com.surfm.account {
     public class AccountManager : MonoBehaviour {
         private static AccountManager instance;
-        internal static ActivityConfig config { get; private set; }
+        internal static ActivityConfig config { get;  set; }
         public DialogManager dm;
         public PageHandler loginPage;
         public PageHandler signupPage;
         public PageHandler helloPage;
+        public Button backButton;
 
         private PageHandler[] pages;
 
@@ -21,6 +23,7 @@ namespace com.surfm.account {
 
         void Awake() {
             instance = this;
+            if (config==null) config = ActivityConfig.LoadFromRepo();
             if (enabled) {
                 GSui.Instance.m_AutoAnimation = false;
             }
@@ -80,11 +83,7 @@ namespace com.surfm.account {
             refleshCB();
         }
 
-        public void exit() {
-            AccountService.getInstance().abortAll();
-            SceneManager.LoadScene(config.goBackPage);
-            config = new ActivityConfig();
-        }
+
 
         public static void goAccoutPage(ActivityConfig ac) {
             Scene scene = SceneManager.GetActiveScene();

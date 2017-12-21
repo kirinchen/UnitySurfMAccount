@@ -13,21 +13,22 @@ namespace com.surfm.account {
         public RePassworder rePassworder;
         public Passworder password;
         public DBotCoder botcode;
-        private URestApi rest;
+        //private URestApi rest;
         private Toast toast;
         private AccountManager am;
 
         new void Awake() {
             base.Awake();
-            am = FindObjectOfType<AccountManager>();
-            rest = FindObjectOfType<URestApi>();
-            toast = FindObjectOfType<Toast>();
+            am = AccountManager.getInstance();
+            toast = Toast.getInstance();
         }
 
 
         internal override void show() {
             base.show();
             botcode.reloadBotCode();
+            am.backButton.onClick.RemoveAllListeners();
+            am.backButton.onClick.AddListener(am.switchLoginPage);
         }
 
         public void submit() {
@@ -47,17 +48,6 @@ namespace com.surfm.account {
             dto.password = password.getValue();
             dto.botCodeKey = botcode.getKey();
             dto.botCodeValue = botcode.getValue();
-            /* @TODO
-            #if UNITY_FACEBOOK
-                    dto.bindType = LoginType.FB;
-                    dto.bindUid = FBManager.getInstance().getUserId();
-            #elif UNITY_STANDALONE
-                    if (SteamManager.Initialized) {
-                        uint u = SteamUser.GetSteamID().GetAccountID().m_AccountID;
-                        dto.bindType = LoginType.STEAM;
-                        dto.bindUid = u.ToString();
-                    }
-            #endif      */
 
             //rest.postJson("/api/v1/public/signup", dto, onOk, onError);
             AccountService.getInstance().signup(dto, this);

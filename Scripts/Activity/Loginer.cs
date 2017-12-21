@@ -8,21 +8,27 @@ namespace com.surfm.account {
     public class Loginer : PageHandler, AccountService.LoginHandler {
 
         public static readonly string KEY_USER_PASS_WRONG = "AccoutPassWrong";
-        private AccountManager am;
+        private AccountManager am { get { return AccountManager.getInstance(); } }
         public EmailInputer email;
         public Passworder password;
 
-        new void Awake() {
-            base.Awake();
-            am = FindObjectOfType<AccountManager>();
+
+
+        internal override void show() {
+            base.show();
+            reflesh();
         }
 
+        private void reflesh() {
+            am.backButton.gameObject.SetActive(false);
+            am.backButton.onClick.RemoveAllListeners();
+        }
 
         public void login() {
             if (AccountLoader.isEmpty()) {
                 doLogin();
             } else {
-                am.dm.get<YesNoDialog>().show( I18n.get("IfOverwriteData"), (b) => {
+                am.dm.get<YesNoDialog>().show(I18n.get("IfOverwriteData"), (b) => {
                     if (b) {
                         doLogin();
                     }

@@ -12,6 +12,7 @@ namespace com.surfm.account {
         public Text nameText;
         public Image avatarImg;
         public Button playButton;
+        private AccountManager am { get { return AccountManager.getInstance(); } }
 
         void Start() {
             playButton.onClick.AddListener(goToPlay);
@@ -31,6 +32,19 @@ namespace com.surfm.account {
             Account a = AccountLoader.getAccount();
             nameText.text = a.userTitle;
             a.setupAvatar(avatarImg);
+            if (string.IsNullOrEmpty(AccountManager.config.goBackPage)) {
+                am.backButton.gameObject.SetActive(false);
+            } else {
+                am.backButton.gameObject.SetActive(true);
+                am.backButton.onClick.RemoveAllListeners();
+                am.backButton.onClick.AddListener(exit);
+            }
+        }
+
+        private void exit() {
+            AccountService.getInstance().abortAll();
+            SceneManager.LoadScene(AccountManager.config.goBackPage);
+            AccountManager.config = new ActivityConfig();
         }
     }
 }
