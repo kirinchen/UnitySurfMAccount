@@ -21,7 +21,7 @@ namespace com.surfm.account {
             foreach (FieldInfo fi in fis) {
                 ConstAttribute ca = (ConstAttribute)Attribute.GetCustomAttribute(fi, typeof(ConstAttribute));
                 if (ca != null) {
-                    object o = r.opt(ca.key, null);
+                    object o = r.opt<object>(ca.key, null);
                     if (o != null) fi.SetValue(ans, o);
                 }
             }
