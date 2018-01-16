@@ -25,7 +25,7 @@ namespace com.surfm.account {
 
         internal static void saveAccountFile(string s) {
 #if UNITY_WEBGL
-            PlayerPrefs.SetString(KEY_SAVE_PREFS,s);
+            PlayerPrefs.SetString(KEY_SAVE_PREFS, s);
 #else
             string p = getAccountLoadPath(PATH);
             FileInfo file = new FileInfo(p);
@@ -52,8 +52,12 @@ namespace com.surfm.account {
         }
 
         internal static bool isExistAccountData() {
-            FileInfo fi = new FileInfo(getAccountLoadPath(PATH));
+#if UNITY_WEBGL
+            return PlayerPrefs.HasKey(KEY_SAVE_PREFS);
+#else
+                    FileInfo fi = new FileInfo(getAccountLoadPath(PATH));
             return fi.Exists;
+#endif
         }
 
 
