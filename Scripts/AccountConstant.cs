@@ -8,6 +8,7 @@ namespace com.surfm.account {
         public static readonly string KEY_SAVE_PREFS = "@<Account>";
         public static bool DEV { get { return get().dev; } }
         public static string ACCOUNT_LOAD_SUFFIX { get { return get().accountLoadSuffix; } }
+        public static bool LOAD_PLAYERPREF { get { return get().loadPlayerPref; } }
 
         public static string PATH { get { return get().accountSavePath; } }
 
@@ -15,6 +16,7 @@ namespace com.surfm.account {
         public bool dev;
         public string accountLoadSuffix;
         public string accountSavePath = "/sdcard/.Yoar/Account.ya";
+        public bool loadPlayerPref;
 
         public static string getAccountLoadPath(string op) {
             if (DEV) {
@@ -27,6 +29,7 @@ namespace com.surfm.account {
 #if UNITY_WEBGL
             PlayerPrefs.SetString(KEY_SAVE_PREFS, s);
 #else
+            if (LOAD_PLAYERPREF) PlayerPrefs.SetString(KEY_SAVE_PREFS, s);
             string p = getAccountLoadPath(PATH);
             FileInfo file = new FileInfo(p);
             file.Directory.Create();
@@ -38,6 +41,7 @@ namespace com.surfm.account {
 #if UNITY_WEBGL
             return PlayerPrefs.GetString(KEY_SAVE_PREFS);
 #else
+            if (LOAD_PLAYERPREF) return PlayerPrefs.GetString(KEY_SAVE_PREFS);
             return File.ReadAllText(getAccountLoadPath(PATH));
 #endif
         }
@@ -55,7 +59,8 @@ namespace com.surfm.account {
 #if UNITY_WEBGL
             return PlayerPrefs.HasKey(KEY_SAVE_PREFS);
 #else
-                    FileInfo fi = new FileInfo(getAccountLoadPath(PATH));
+            if (LOAD_PLAYERPREF) return PlayerPrefs.HasKey(KEY_SAVE_PREFS);
+            FileInfo fi = new FileInfo(getAccountLoadPath(PATH));
             return fi.Exists;
 #endif
         }
