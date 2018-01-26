@@ -63,6 +63,7 @@ namespace com.surfm.account {
         }
 
         public void onOk(LoginResultDto dto) {
+            Loading.getInstance().show(false);
             AccountManager.getInstance().switchHelloPage();
         }
 

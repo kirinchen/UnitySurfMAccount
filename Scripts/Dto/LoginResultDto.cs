@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class LoginResultDto  {
-
+    public string uid;
     public string jSessionId;
     public string username;
     public string xGunUid;
