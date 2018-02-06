@@ -28,5 +28,9 @@ namespace com.surfm.account {
         internal override object setupLoginDto(object d) {
             return d;
         }
+
+        internal override bool isLoaded() {
+            return !AccountLoader.isEmpty();
+        }
     }
 }

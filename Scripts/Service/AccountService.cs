@@ -10,6 +10,7 @@ namespace com.surfm.account {
         private static AccountService instance;
         private URestApi rest;
         private Dictionary<ServiceHandle.Mode, ServiceHandle> _hmap = new Dictionary<ServiceHandle.Mode, ServiceHandle>();
+        private ItemService itemService;
 
         void Awake() {
             instance = this;
@@ -18,19 +19,23 @@ namespace com.surfm.account {
             foreach (ServiceHandle x in GetComponents<ServiceHandle>()) {
                 _hmap.Add(x.mode, x);
             }
+            DontDestroyOnLoad(gameObject);
         }
 
 
 
         public void signup(UserSignupFormDto dto, LoginHandler sh) {
+            ErrorAction ea = new ErrorAction(eb => { sh.onError(eb.e); }).setSessionFailAction(d => {
+                sh.onException(d);
+            }).setServerErrorAction(d => {
+                sh.onException(d);
+            });
             rest.postJson("/api/v1/public/signup", dto, (msg) => {
                 handleLogined(ServiceHandle.Mode.Base, dto, msg, sh);
-            }, (m, s, r, e) => {
-                handleError(m, r, sh);
-            });
+            }, ea.onError);
         }
 
-        public void loadDebotCode(string key,Action<Texture2D> cb, URestApi.OnError onError) {
+        public void loadDebotCode(string key, Action<Texture2D> cb, URestApi.OnError onError) {
             rest.loadRes("/api/v1/public/derobotcode?key=" + key, (w) => {
                 cb(w.DataAsTexture2D);
             }, onError);
@@ -50,13 +55,15 @@ namespace com.surfm.account {
             }
         }
 
+
+
         internal void abortAll() {
             rest.abortAll();
         }
 
         private void handleLogined(ServiceHandle.Mode m, object d, string msg, LoginHandler sh) {
             LoginResultDto l = JsonConvert.DeserializeObject<LoginResultDto>(msg);
-            getHandle(m).saveUserAndPass(l,d);
+            getHandle(m).saveUserAndPass(l, d);
             sh.onOk(l);
         }
 
@@ -86,20 +93,46 @@ namespace com.surfm.account {
 
         public void login(ServiceHandle.Mode mode, object d, LoginHandler sh) {
             deleteLoginData();
+
+            ErrorAction ea = new ErrorAction(eb => { sh.onError(eb.e); }).setSessionFailAction(dto => {
+                sh.onException(dto);
+            }).setServerErrorAction(dto => {
+                sh.onException(dto);
+            });
+
             ServiceHandle h = getHandle(mode);
             rest.postJson(h.loginUrl, h.setupLoginDto(d), (msg) => {
                 handleLogined(mode, d, msg, sh);
-            }, (m, s, r, e) => {
-                handleError(m, r, sh);
-            });
+            }, ea.onError);
         }
 
-        public void relogin(ServiceHandle.Mode m, LoginHandler sh) {
-            object d = getHandle(m).getUserLoginFormDto();
-            login(m, d, sh);
+        public void relogin(LoginHandler sh) {
+            ServiceHandle csh = getCurrentHandle();
+            object d = csh.getUserLoginFormDto();
+            login(csh.mode, d, sh);
         }
 
+        private ServiceHandle getCurrentHandle() {
+            foreach (ServiceHandle sh in _hmap.Values) {
+                bool b = sh.isLoaded();
+                Debug.Log("b=" + b);
+                if (b) {
+                    Debug.Log("sh.isLoaded()");
+                    return sh;
+                }
+            }
+            throw new NullReferenceException("not find any service handler");
 
+        }
+
+        public ItemService getItemService() {
+            if (!isLogin()) throw new NullReferenceException("not login");
+            if (itemService == null) {
+                itemService = gameObject.AddComponent<ItemService>();
+                itemService.init(rest, relogin);
+            }
+            return itemService;
+        }
 
 
         private void loadSession() {

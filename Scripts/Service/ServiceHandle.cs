@@ -17,5 +17,7 @@ namespace com.surfm.account {
         internal abstract object getUserLoginFormDto();
 
         internal abstract object setupLoginDto(object d);
+
+        internal abstract bool isLoaded();
     }
 }
