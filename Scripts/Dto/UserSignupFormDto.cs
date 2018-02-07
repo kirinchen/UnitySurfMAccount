@@ -5,5 +5,6 @@ namespace com.surfm.account {
     public class UserSignupFormDto : UserLoginFormDto {
         public string botCodeValue;
         public string botCodeKey;
+        public string phone;
     }
 }

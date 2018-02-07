@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using surfm.tool;
 using surfm.tool.i18n;
+using UnityStomp;
 
 namespace com.surfm.account {
     public class Signuper : PageHandler, AccountService.LoginHandler {
@@ -14,13 +15,12 @@ namespace com.surfm.account {
         public Passworder password;
         public DBotCoder botcode;
         //private URestApi rest;
-        private Toast toast;
+        private Toast toast { get { return Toast.getInstance(); } }
         private AccountManager am;
 
         new void Awake() {
             base.Awake();
             am = AccountManager.getInstance();
-            toast = Toast.getInstance();
         }
 
 
@@ -48,6 +48,8 @@ namespace com.surfm.account {
             dto.password = password.getValue();
             dto.botCodeKey = botcode.getKey();
             dto.botCodeValue = botcode.getValue();
+            Debug.Log("TODO type phone");
+            dto.phone = UidUtils.getRandomNumber(10);
 
             //rest.postJson("/api/v1/public/signup", dto, onOk, onError);
             AccountService.getInstance().signup(dto, this);
@@ -68,6 +70,7 @@ namespace com.surfm.account {
         }
 
         public void onException(SurfMErrorDto dto) {
+            Debug.Log(dto);
             Loading.getInstance().show(false);
             if (dto.getSurfMError() == SurfMErrorDto.SurfMError.NONE) {
                 toast.show(I18n.get(KEY_UNNOWN_FAIL));
@@ -80,6 +83,7 @@ namespace com.surfm.account {
 
         public void onError(Exception e) {
             Loading.getInstance().show(false);
+            Debug.LogException(e);
             toast.show(I18n.get(KEY_UNNOWN_FAIL));
         }
     }

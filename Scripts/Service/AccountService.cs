@@ -13,13 +13,17 @@ namespace com.surfm.account {
         private ItemService itemService;
 
         void Awake() {
+            if (instance != null) {
+                Destroy(gameObject);
+                return;
+            }
             instance = this;
+            DontDestroyOnLoad(gameObject);
             rest = GetComponent<URestApi>();
             loadSession();
             foreach (ServiceHandle x in GetComponents<ServiceHandle>()) {
                 _hmap.Add(x.mode, x);
             }
-            DontDestroyOnLoad(gameObject);
         }
 
 
