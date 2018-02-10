@@ -69,6 +69,7 @@ namespace com.surfm.account {
             LoginResultDto l = JsonConvert.DeserializeObject<LoginResultDto>(msg);
             getHandle(m).saveUserAndPass(l, d);
             sh.onOk(l);
+            rest.authorization = l.jSessionId;
         }
 
         public bool isLogin() {
