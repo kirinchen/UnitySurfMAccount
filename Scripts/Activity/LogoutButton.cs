@@ -3,11 +3,11 @@ using System.Collections;
 using UnityEngine.UI;
 using System;
 using com.surfm.account;
+using surfm.tool;
 
 namespace com.surfm.account {
     public class LogoutButton : MonoBehaviour {
 
-        public Text usernameText;
         private AccountManager am;
         public GameObject button;
 
@@ -22,7 +22,6 @@ namespace com.surfm.account {
             if (AccountService.getInstance().isLogin()) {
                 rd = AccountLoader.getAccount().loginResult;
                 if (rd.accountType == LoginType.SLEF) {
-                    usernameText.text = rd.username;
                     selfLogined = true;
                 }
             }

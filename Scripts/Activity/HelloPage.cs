@@ -9,7 +9,7 @@ using UnityEngine.UI;
 namespace com.surfm.account {
     public class HelloPage : PageHandler {
 
-        public Text nameText;
+        public InputFieldBG userTitleField;
         public Image avatarImg;
         public Button playButton;
         private AccountManager am { get { return AccountManager.getInstance(); } }
@@ -28,9 +28,16 @@ namespace com.surfm.account {
             reflesh();
         }
 
-        private void reflesh() {
+        public void save() {
+            Account account = AccountLoader.getAccount();
+            account.userTitle = userTitleField.text;
+            AccountLoader.save();
+            reflesh();
+        }
+
+        public void reflesh() {
             Account a = AccountLoader.getAccount();
-            nameText.text = a.userTitle;
+            userTitleField.text = a.userTitle;
             a.setupAvatar(avatarImg);
             if (string.IsNullOrEmpty(AccountManager.config.goBackPage)) {
                 am.backButton.gameObject.SetActive(false);

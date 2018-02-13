@@ -3,13 +3,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static com.surfm.account.AccountService;
-using static URestApi;
+//using static com.surfm.account.AccountService;
+//using static URestApi;
 
 namespace com.surfm.account {
     public class ItemService : MonoBehaviour {
 
-        public delegate void ReLoginAction(LoginHandler ac);
+        public delegate void ReLoginAction(AccountService.LoginHandler ac);
 
         private URestApi rest;
         private ReLoginAction reLoginAction;
@@ -19,7 +19,7 @@ namespace com.surfm.account {
             reLoginAction = r;
         }
 
-        public void getCoin(Action<ItemOutDto> oa, Action<SurfMErrorDto> sea, OnErrorBundle ob) {
+        public void getCoin(Action<ItemOutDto> oa, Action<SurfMErrorDto> sea, URestApi.OnErrorBundle ob) {
             ErrorAction ea = new ErrorAction(ob).setRetryAction(() => {
                 getCoin(oa, sea, ob);
             }).setServerErrorAction(sea);

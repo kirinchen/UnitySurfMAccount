@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using BestHTTP;
-using UnityEngine;
-using static com.surfm.account.AccountService;
+
 
 namespace com.surfm.account {
-    public class ErrorAction : URestApi.OnErrorB, LoginHandler {
+    public class ErrorAction : URestApi.OnErrorB, AccountService. LoginHandler {
         private Action<SurfMErrorDto> sessionFailAction = (e)=> { };
         private Action<SurfMErrorDto> serverErrorAction = (e) => { };
         private Action retry;
