@@ -13,20 +13,18 @@ namespace com.surfm.account {
         public EmailInputer email;
         public RePassworder rePassworder;
         public Passworder password;
+        public PhoneInputer phoner;
         public DBotCoder botcode;
         //private URestApi rest;
         private Toast toast { get { return Toast.getInstance(); } }
-        private AccountManager am;
+        private AccountManager am { get { return AccountManager.getInstance(); } }
 
-        new void Awake() {
-            base.Awake();
-            am = AccountManager.getInstance();
-        }
 
 
         internal override void show() {
             base.show();
             botcode.reloadBotCode();
+            am.backButton.gameObject.SetActive(true);
             am.backButton.onClick.RemoveAllListeners();
             am.backButton.onClick.AddListener(am.switchLoginPage);
         }
@@ -39,7 +37,7 @@ namespace com.surfm.account {
         }
 
         private bool validate() {
-            return email.validate() & password.validate() & rePassworder.validate() & botcode.validate();
+            return email.validate() & password.validate() & rePassworder.validate() & botcode.validate() & phoner.validate();
         }
 
         private void post2Remote() {
@@ -48,8 +46,7 @@ namespace com.surfm.account {
             dto.password = password.getValue();
             dto.botCodeKey = botcode.getKey();
             dto.botCodeValue = botcode.getValue();
-            Debug.Log("TODO type phone");
-            dto.phone = UidUtils.getRandomNumber(10);
+            dto.phone = phoner.getValue() + "";
 
             //rest.postJson("/api/v1/public/signup", dto, onOk, onError);
             AccountService.getInstance().signup(dto, this);
