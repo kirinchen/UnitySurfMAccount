@@ -29,6 +29,32 @@ namespace com.surfm.account {
             am.backButton.onClick.AddListener(am.switchLoginPage);
         }
 
+        public void onClick() {
+            if (AccountConstant.PHONE_VAILD) {
+                vaildPhone();
+            } else {
+                submit();
+            }
+        }
+
+        private void vaildPhone() {
+            if (validate()) {
+                string rn = UidUtils.getRandomNumber(6);
+                string msg = string.Format(I18n.get("phone code={0}"), rn);
+                SMSService.getInstance().sendToRemote(phoner.getValue() + "", msg, () => {
+                    DialogManager.instance.get<InputDialog>().show(I18n.get("Input Phone Code"), t => {
+                        if (string.Equals(rn, t)) {
+                            submit();
+                        } else {
+                            Toast.getInstance().show(I18n.get("The Phone Vaild Code Fail"));
+                        }
+                    });
+                }, e => {
+                    Toast.getInstance().show(e.ToString());
+                });
+            }
+        }
+
         public void submit() {
             if (validate()) {
                 Loading.getInstance().show(true);

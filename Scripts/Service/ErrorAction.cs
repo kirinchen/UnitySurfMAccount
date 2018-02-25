@@ -1,9 +1,9 @@
 ﻿using System;
-
+using UnityEngine;
 
 namespace com.surfm.account {
-    public class ErrorAction : URestApi.OnErrorB, AccountService. LoginHandler {
-        private Action<SurfMErrorDto> sessionFailAction = (e)=> { };
+    public class ErrorAction : URestApi.OnErrorB, AccountService.LoginHandler {
+        private Action<SurfMErrorDto> sessionFailAction = (e) => { };
         private Action<SurfMErrorDto> serverErrorAction = (e) => { };
         private Action retry;
 
@@ -49,6 +49,7 @@ namespace com.surfm.account {
         }
 
         public void onException(SurfMErrorDto dto) {
+            Debug.Log("onException=" + dto);
             serverErrorAction(dto);
         }
 

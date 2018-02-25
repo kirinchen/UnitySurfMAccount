@@ -51,7 +51,7 @@ public class PhoneInputer : MonoBehaviour {
         }
     }
 
-    internal int getValue() {
-        return int.Parse(inputField.text);
+    internal string getValue() {
+        return inputField.text;
     }
 }

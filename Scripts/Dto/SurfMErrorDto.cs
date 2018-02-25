@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace com.surfm.account {
     public class SurfMErrorDto {
-        public long timestamp;
+        public string timestamp;
         public int status;
         public string error;
         public string exception;

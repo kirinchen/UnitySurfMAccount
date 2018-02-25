@@ -9,6 +9,8 @@ namespace com.surfm.account {
         public static bool DEV { get { return get().dev; } }
         public static string ACCOUNT_LOAD_SUFFIX { get { return get().accountLoadSuffix; } }
         public static bool LOAD_PLAYERPREF { get { return get().loadPlayerPref; } }
+        public static string SMS_SERVICE { get { return get().smsService; } }
+        public static bool PHONE_VAILD { get { return get().phoneVaild; } }
 
         public static string PATH { get { return get().accountSavePath; } }
 
@@ -17,6 +19,8 @@ namespace com.surfm.account {
         public string accountLoadSuffix;
         public string accountSavePath = "/sdcard/.Yoar/Account.ya";
         public bool loadPlayerPref;
+        public string smsService = "@SMSMitakeService";
+        public bool phoneVaild;
 
         public static string getAccountLoadPath(string op) {
             if (DEV) {
