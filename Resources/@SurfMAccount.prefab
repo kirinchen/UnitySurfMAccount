@@ -146,3 +146,30 @@ MonoBehaviour:
     es: "Cierre de sesi\xF3n"
     pt: 
     jp: "\u30ED\u30B0\u30A2\u30A6\u30C8"
+  - name: Enter Name...
+    tw: "\u8F38\u5165\u540D\u7A31"
+    cn: "\u8F93\u5165\u540D\u79F0"
+    eng: Enter name
+    ru: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0438\u043C\u044F"
+    kr: 
+    es: Ingrese su nombre
+    pt: 
+    jp: "\u540D\u524D\u3092\u5165\u529B"
+  - name: Yes
+    tw: "\u662F"
+    cn: "\u662F"
+    eng: Yes
+    ru: "\u0414\u0430"
+    kr: "\uC608"
+    es: "S\xED"
+    pt: Sim
+    jp: "\u306F\u3044"
+  - name: No
+    tw: "\u5426"
+    cn: "\u5426"
+    eng: No
+    ru: "\u041D\u0435\u0442"
+    kr: "\uC544\uB2C8"
+    es: No
+    pt: "N\xE3o"
+    jp: "\u3044\u3044\u3048"
