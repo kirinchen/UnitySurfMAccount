@@ -146,3 +146,145 @@ MonoBehaviour:
     es: "Cierre de sesi\xF3n"
     pt: 
     jp: "\u30ED\u30B0\u30A2\u30A6\u30C8"
+  - name: Enter Name...
+    tw: "\u8F38\u5165\u540D\u7A31"
+    cn: "\u8F93\u5165\u540D\u79F0"
+    eng: Enter name
+    ru: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0438\u043C\u044F"
+    kr: 
+    es: Ingrese su nombre
+    pt: 
+    jp: "\u540D\u524D\u3092\u5165\u529B"
+  - name: Yes
+    tw: "\u662F"
+    cn: "\u662F"
+    eng: Yes
+    ru: "\u0414\u0430"
+    kr: "\uC608"
+    es: "S\xED"
+    pt: Sim
+    jp: "\u306F\u3044"
+  - name: No
+    tw: "\u5426"
+    cn: "\u5426"
+    eng: No
+    ru: "\u041D\u0435\u0442"
+    kr: "\uC544\uB2C8"
+    es: No
+    pt: "N\xE3o"
+    jp: "\u3044\u3044\u3048"
+  - name: IfOverwriteData
+    tw: "\u662F\u5426\u8981\u8986\u84CB\u8CC7\u6599\uFF1F"
+    cn: "\u662F\u5426\u8981\u8986\u76D6\u6570\u636E\uFF1F"
+    eng: Do you want to overwrite data?
+    ru: "\u0412\u044B \u0445\u043E\u0442\u0438\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u043F\u0438\u0441\u0430\u0442\u044C
+      \u0434\u0430\u043D\u043D\u044B\u0435?"
+    kr: 
+    es: "\xBFQuieres sobrescribir datos?"
+    pt: 
+    jp: "\u30C7\u30FC\u30BF\u3092\u4E0A\u66F8\u304D\u3057\u307E\u3059\u304B\uFF1F"
+  - name: fomateError
+    tw: "\u683C\u5F0F\u932F\u8AA4"
+    cn: "\u683C\u5F0F\u9519\u8BEF"
+    eng: wrong format
+    ru: "\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0444\u043E\u0440\u043C\u0430\u0442"
+    kr: 
+    es: "Formato err\xF3neo"
+    pt: 
+    jp: "\u30D5\u30A9\u30FC\u30DE\u30C3\u30C8\u304C\u9593\u9055\u3063\u3066\u3044\u307E\u3059"
+  - name: PassNotEmpty
+    tw: "\u4E0D\u5F97\u70BA\u7A7A\u767D"
+    cn: "\u4E0D\u5F97\u4E3A\u7A7A\u503C"
+    eng: It should not be blanked
+    ru: "\u042D\u0442\u043E \u043D\u0435 \u043F\u0443\u0441\u0442\u0430\u044F"
+    kr: 
+    es: "No es vac\xEDa"
+    pt: 
+    jp: "\u7A7A\u767D\u306E\u307E\u307E\u306B\u3059\u308B\u3053\u3068\u306F\u3067\u304D\u307E\u305B\u3093"
+  - name: phone number not 10
+    tw: "\u865F\u78BC\u81F3\u5C11\u70BA10\u78BC"
+    cn: 
+    eng: "\u865F\u78BC\u81F3\u5C11\u70BA10\u78BC"
+    ru: 
+    kr: 
+    es: 
+    pt: 
+    jp: 
+  - name: Play
+    tw: "\u958B\u59CB\u73A9"
+    cn: "\u5F00\u59CB\u73A9"
+    eng: Play
+    ru: "\u0418\u0433\u0440\u0430\u0442\u044C"
+    kr: 
+    es: Jugar
+    pt: 
+    jp: "\u904A\u3076"
+  - name: AccoutPassWrong
+    tw: "\u4F7F\u7528\u8005\u540D\u7A31/\u5BC6\u78BC \u932F\u8AA4"
+    cn: "\u4F7F\u7528\u8005\u540D\u79F0/\u5BC6\u7801 \u9519\u8BEF"
+    eng: Username/Password wrong
+    ru: "\u0418\u043C\u044F \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F
+      / \u043F\u0430\u0440\u043E\u043B\u044C \u043D\u0435\u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E"
+    kr: 
+    es: "Nombre de usuario / contrase\xF1a incorrecta"
+    pt: 
+    jp: "\u30E6\u30FC\u30B6\u30FC\u540D/\u30D1\u30B9\u30EF\u30FC\u30C9\u304C\u9593\u9055\u3063\u3066\u3044\u307E\u3059"
+  - name: passNotSame
+    tw: "\u5BC6\u78BC\u4E0D\u4E00\u81F4"
+    cn: "\u5BC6\u7801\u4E0D\u4E00\u81F4"
+    eng: Inconsistent password
+    ru: "\u041D\u0435\u0441\u043E\u043E\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u044E\u0449\u0438\u0439
+      \u043F\u0430\u0440\u043E\u043B\u044C"
+    kr: 
+    es: "Contrase\xF1a inconsistente"
+    pt: 
+    jp: "\u30D1\u30B9\u30EF\u30FC\u30C9\u304C\u4E00\u81F4\u3057\u3066\u3044\u307E\u305B\u3093"
+  - name: PassLengthMax
+    tw: "\u6700\u591A{0}\u78BC"
+    cn: "\u6700\u591A{0}\u7801"
+    eng: maximum {0} chars
+    ru: "\u042D\u0442\u043E \u043D\u0435 \u0431\u043E\u043B\u0435\u0435 {0} \u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432"
+    kr: 
+    es: "M\xE1ximo {0} caracteres"
+    pt: 
+    jp: "\u6700\u5927\u9650{0}\u6587\u5B57\u3067\u3059"
+  - name: PassLengthLess
+    tw: "\u6700\u5C11{0}\u78BC"
+    cn: "\u6700\u5C11{0}\u7801"
+    eng: It is least {0} chars
+    ru: "\u042D\u0442\u043E \u043D\u0430\u0438\u043C\u0435\u043D\u0435\u0435 {0} \u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432"
+    kr: 
+    es: "M\xEDnimo {0} caracteres"
+    pt: 
+    jp: "\u6700\u4F4E\u9650\u306F{0}\u6587\u5B57\u3067\u3059"
+  - name: codeError
+    tw: "\u9A57\u8B49\u78BC\u932F\u8AA4"
+    cn: "\u9A8C\u8BC1\u7801\u9519\u8BEF"
+    eng: Code Error
+    ru: "\u041A\u043E\u0434 \u043E\u0448\u0438\u0431\u043A\u0438"
+    kr: 
+    es: "Error de c\xF3digo"
+    pt: 
+    jp: "\u30B3\u30FC\u30C9\u30A8\u30E9\u30FC"
+  - name: userExist
+    tw: "\u7528\u6236\u5DF2\u5B58\u5728"
+    cn: "\u7528\u6237\u5DF2\u5B58\u5728"
+    eng: User already exists
+    ru: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C
+      \u0443\u0436\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442"
+    kr: 
+    es: El usuario ya existe
+    pt: 
+    jp: "\u3053\u306E\u30A2\u30AB\u30A6\u30F3\u30C8\u306F\u3059\u3067\u306B\u4F7F\u308F\u308C\u305F"
+  - name: unknownFail
+    tw: "\u7DB2\u8DEF\u9023\u63A5\u932F\u8AA4!\u7A0D\u5019\u518D\u8A66"
+    cn: "\u7F51\u7EDC\u8FDE\u7ED3\u9519\u8BEF!\u7A0D\u5019\u518D\u8A66"
+    eng: Network connection error! Try again later
+    ru: "\u041E\u0448\u0438\u0431\u043A\u0430 \u043F\u043E\u0434\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u044F
+      \u043A \u0441\u0435\u0442\u0438! \u041F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435
+      \u043F\u043E\u0437\u0436\u0435"
+    kr: 
+    es: "Error de conexi\xF3n de red! Int\xE9ntelo m\xE1s tarde"
+    pt: 
+    jp: "\u30CD\u30C3\u30C8\u30EF\u30FC\u30AF\u63A5\u7D9A\u30A8\u30E9\u30FC\uFF01
+      \u3042\u3068\u3067\u3082\u3046\u4E00\u5EA6\u8A66\u3057\u3066\u307F\u3066\u304F\u3060\u3055\u3044"
