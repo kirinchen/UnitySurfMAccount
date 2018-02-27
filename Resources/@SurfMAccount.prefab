@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee11d8d569f4b24dbb256fc2b326995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultLanguage: 3
+  defaultLanguage: 1
   search: 
   sort: 0
   terms:

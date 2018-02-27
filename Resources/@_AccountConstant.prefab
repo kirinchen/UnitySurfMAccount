@@ -56,4 +56,4 @@ MonoBehaviour:
   accountSavePath: /sdcard/.Yoar/Account.ya
   loadPlayerPref: 0
   smsService: '@SMSMitakeService'
-  phoneVaild: 1
+  phoneVaild: 0
