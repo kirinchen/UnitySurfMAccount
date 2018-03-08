@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dev: 0
-  accountLoadSuffix: 22
+  accountLoadSuffix: 44
   accountSavePath: /sdcard/.Yoar/Account.ya
   loadPlayerPref: 0
   smsService: '@SMSMitakeService'

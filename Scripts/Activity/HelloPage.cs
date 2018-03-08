@@ -12,6 +12,7 @@ namespace com.surfm.account {
         public InputFieldBG userTitleField;
         public Image avatarImg;
         public Button playButton;
+        public Text userUid;
         private AccountManager am { get { return AccountManager.getInstance(); } }
 
         void Start() {
@@ -39,6 +40,9 @@ namespace com.surfm.account {
             Account a = AccountLoader.getAccount();
             userTitleField.text = a.userTitle;
             a.setupAvatar(avatarImg);
+            if (userUid != null) {
+                userUid.text = a.pid;
+            }
             if (string.IsNullOrEmpty(AccountManager.config.goBackPage)) {
                 am.backButton.gameObject.SetActive(false);
             } else {
