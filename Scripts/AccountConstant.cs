@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using UnityEngine;
+﻿using UnityEngine;
 namespace com.surfm.account {
     public class AccountConstant : MonoBehaviour {
         public static readonly string KEY_SAVE_PREFS = "@<Account>";
@@ -21,33 +17,30 @@ namespace com.surfm.account {
         public bool loadPlayerPref;
         public string smsService = "@SMSMitakeService";
         public bool phoneVaild;
+        private AccountDataLoad dataLoad;
 
-        public static string getAccountLoadPath(string op) {
-            if (DEV) {
-                return ACCOUNT_LOAD_SUFFIX + op;
+        private AccountDataLoad getDataLoad() {
+            if (dataLoad == null) {
+                if (loadPlayerPref) {
+                    dataLoad = new AccountDataPlayerPrefsLoad();
+                } else {
+#if UNITY_WEBGL  || UNITY_IOS     || UNITY_EDITOR_OSX
+                    dataLoad = new AccountDataPlayerPrefsLoad();
+#else
+                    dataLoad = new AccountDataFileLoad();
+#endif
+                }
             }
-            return op;
+            return dataLoad;
         }
 
+
         internal static void saveAccountFile(string s) {
-#if UNITY_WEBGL
-            PlayerPrefs.SetString(KEY_SAVE_PREFS, s);
-#else
-            if (LOAD_PLAYERPREF) PlayerPrefs.SetString(KEY_SAVE_PREFS, s);
-            string p = getAccountLoadPath(PATH);
-            FileInfo file = new FileInfo(p);
-            file.Directory.Create();
-            File.WriteAllText(p, s);
-#endif
+            get().getDataLoad().saveAccountFile(s);
         }
 
         internal static string loadAccountFile() {
-#if UNITY_WEBGL
-            return PlayerPrefs.GetString(KEY_SAVE_PREFS);
-#else
-            if (LOAD_PLAYERPREF) return PlayerPrefs.GetString(KEY_SAVE_PREFS);
-            return File.ReadAllText(getAccountLoadPath(PATH));
-#endif
+            return get().getDataLoad().loadAccountFile();
         }
 
         /*@TODO 加入 comm config to set save where */
@@ -60,13 +53,7 @@ namespace com.surfm.account {
         }
 
         internal static bool isExistAccountData() {
-#if UNITY_WEBGL
-            return PlayerPrefs.HasKey(KEY_SAVE_PREFS);
-#else
-            if (LOAD_PLAYERPREF) return PlayerPrefs.HasKey(KEY_SAVE_PREFS);
-            FileInfo fi = new FileInfo(getAccountLoadPath(PATH));
-            return fi.Exists;
-#endif
+            return get().getDataLoad().isExistAccountData();
         }
 
 
