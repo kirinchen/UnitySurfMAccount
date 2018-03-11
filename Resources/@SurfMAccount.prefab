@@ -336,3 +336,30 @@ MonoBehaviour:
     pt: 
     jp: "\u30CD\u30C3\u30C8\u30EF\u30FC\u30AF\u63A5\u7D9A\u30A8\u30E9\u30FC\uFF01
       \u3042\u3068\u3067\u3082\u3046\u4E00\u5EA6\u8A66\u3057\u3066\u307F\u3066\u304F\u3060\u3055\u3044"
+  - name: Create Room
+    tw: "\u5275\u5EFA\u623F\u9593"
+    cn: "\u521B\u5EFA\u623F\u95F4"
+    eng: 
+    ru: 
+    kr: 
+    es: 
+    pt: 
+    jp: 
+  - name: small/Big_Blind
+    tw: "\u5C0F/\u5927\u76F2\u6CE8"
+    cn: "\u5C0F/\u5927\u76F2\u6CE8"
+    eng: 
+    ru: 
+    kr: 
+    es: 
+    pt: 
+    jp: 
+  - name: min/Max_Chips
+    tw: "\u6700\u5C0F/\u5927\u7C4C\u78BC"
+    cn: "\u6700\u5C0F/\u5927\u7B79\u7801"
+    eng: 
+    ru: 
+    kr: 
+    es: 
+    pt: 
+    jp: 
