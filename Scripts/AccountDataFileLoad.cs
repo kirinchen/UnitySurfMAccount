@@ -11,7 +11,11 @@ namespace com.surfm.account {
 
         private string getAccountLoadPath(string op) {
 
-#if UNITY_STANDALONE_WIN
+#if UNITY_EDITOR_WIN
+            if (AccountConstant.DEV) {
+                return AccountConstant.ACCOUNT_LOAD_SUFFIX + op;
+            }
+#elif UNITY_STANDALONE_WIN
             string root = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
             root = root.Replace(".exe", "_AccData/");
             op = root + op;
