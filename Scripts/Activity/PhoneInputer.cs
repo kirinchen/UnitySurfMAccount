@@ -1,4 +1,5 @@
-﻿using System;
+﻿using surfm.tool.i18n;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,7 +42,7 @@ public class PhoneInputer : MonoBehaviour {
 
     public void vaildate(string s) {
         if (s.Length != 10)
-            throw new PhoneException("phone number not 10 " + s.Length);
+            throw new PhoneException(I18n.get("phone number not 10 ") + s.Length);
     }
 
     public class PhoneException : Exception {
