@@ -51,9 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5355e59d5f837f41953b517817880d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dev: 1
+  dev: 0
   accountLoadSuffix: 44
   accountSavePath: /sdcard/.Yoar/Account.ya
-  loadPlayerPref: 0
+  loadPlayerPref: 1
   smsService: '@SMSMitakeService'
   phoneVaild: 0

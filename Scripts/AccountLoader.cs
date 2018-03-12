@@ -31,7 +31,7 @@ namespace com.surfm.account {
         private void saveCurrent() {
             account = getCurrentAccount();
             string plain = JsonConvert.SerializeObject(account);
-            string s = CommUtils.encryptBase64(getSKey(), BYTE_KEY, plain);
+            string s = CommUtils.encryptDES(getSKey(), BYTE_KEY, plain);
             AccountConstant.saveAccountFile(s);
             observers.ForEach(a => { a(); });
         }
@@ -60,7 +60,7 @@ namespace com.surfm.account {
             if (!AccountConstant.isExistAccountData()) return createNewOne();
             try {
                 string s = AccountConstant.loadAccountFile();
-                string plain = CommUtils.decryptBase64(getSKey(), BYTE_KEY, s);
+                string plain = CommUtils.decryptDES(getSKey(), BYTE_KEY, s);
                 return JsonConvert.DeserializeObject<Account>(plain);
             } catch (Exception e) {
                 Debug.Log(e);
