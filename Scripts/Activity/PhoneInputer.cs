@@ -42,7 +42,7 @@ public class PhoneInputer : MonoBehaviour {
 
     public void vaildate(string s) {
         if (s.Length != 10)
-            throw new PhoneException(I18n.get("phone number not 10 ") + s.Length);
+			throw new PhoneException(I18n.get("PhoneNumberError") + s.Length + I18n.get("PhoneNumberIs"));
     }
 
     public class PhoneException : Exception {
