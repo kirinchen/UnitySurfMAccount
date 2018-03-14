@@ -101,7 +101,13 @@ namespace com.surfm.account {
                 handleBotcodeError(dto);
             } else if (dto.getSurfMError() == SurfMErrorDto.SurfMError.UserExistException) {
                 handleEmailExistError(dto);
+            } else if (dto.getSurfMError() == SurfMErrorDto.SurfMError.PhoneExistException) {
+                handlePhoneExistError(dto);
             }
+        }
+
+        private void handlePhoneExistError(SurfMErrorDto dto) {
+            phoner.alert(I18n.get("PhoneExist"));
         }
 
         public void onError(Exception e) {

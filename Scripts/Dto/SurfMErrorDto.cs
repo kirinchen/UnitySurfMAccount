@@ -13,7 +13,7 @@ namespace com.surfm.account {
 
         public enum SurfMError {
             NONE, BotcodeException, UserExistException, AlreadyBindedException,
-            PlayerDataNotExistException, ApiKeyFailException, NoSuchElementException, GiftGotedException
+            PlayerDataNotExistException, ApiKeyFailException, NoSuchElementException, GiftGotedException, PhoneExistException
         }
 
         public bool isSuccess() {
@@ -36,6 +36,8 @@ namespace com.surfm.account {
                     return SurfMError.NoSuchElementException;
                 case "net.surfm.account.exception.GiftGotedException":
                     return SurfMError.GiftGotedException;
+                case "net.surfm.account.exception.PhoneExistException":
+                    return SurfMError.PhoneExistException;
             }
             return SurfMError.NONE;
         }
