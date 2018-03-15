@@ -28,11 +28,15 @@ namespace com.surfm.account {
             if (AccountLoader.isEmpty()) {
                 doLogin();
             } else {
-                am.dm.get<YesNoDialog>().show(I18n.get("IfOverwriteData"), (b) => {
-                    if (b) {
-                        doLogin();
-                    }
-                });
+                if (AccountLoader.isEmpty()) {
+                    doLogin();
+                } else {
+                    am.dm.get<YesNoDialog>().show(I18n.get("IfOverwriteData"), (b) => {
+                        if (b) {
+                            doLogin();
+                        }
+                    });
+                }
             }
         }
 

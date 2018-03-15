@@ -19,7 +19,11 @@ namespace com.surfm.account {
         private AccountLoader() { }
 
         internal static bool isEmpty() {
-            return !AccountConstant.isExistAccountData();
+            if (AccountConstant.isExistAccountData()) {
+                string s = AccountConstant.loadAccountFile();
+                if (!string.IsNullOrEmpty(s)) return false;
+            }
+            return true;
         }
 
         internal void setAccount(Account a) {
