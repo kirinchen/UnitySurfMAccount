@@ -25,19 +25,22 @@ namespace com.surfm.account {
         }
 
         public void login() {
-            if (AccountLoader.isEmpty()) {
+            doLogin();
+           /* if (AccountLoader.isEmpty()) {
                 doLogin();
             } else {
+
                 if (AccountLoader.isEmpty()) {
                     doLogin();
                 } else {
-                    am.dm.get<YesNoDialog>().show(I18n.get("IfOverwriteData"), (b) => {
-                        if (b) {
-                            doLogin();
-                        }
-                    });
+                    doLogin();
+                    //am.dm.get<YesNoDialog>().show(I18n.get("IfOverwriteData"), (b) => {
+                    //    if (b) {
+                    //        doLogin();
+                    //    }
+                    //});
                 }
-            }
+            }    */
         }
 
         private void doLogin() {

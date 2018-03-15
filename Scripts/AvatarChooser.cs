@@ -16,6 +16,10 @@ namespace com.surfm.account {
             img = GetComponentInChildren<Image>();
         }
 
+        void Start() {
+            reflesh();
+        }
+
         public void onClick() {
             showChoose();
         }
