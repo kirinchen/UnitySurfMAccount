@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using GUIAnimator;
 
 public class PageHandler : MonoBehaviour {
 
@@ -11,12 +12,12 @@ public class PageHandler : MonoBehaviour {
     }
 
     internal virtual void show() {
-        gaui.MoveIn(GUIAnimSystem.eGUIMove.Self);
+        gaui.PlayInAnims(eGUIMove.Self);
     }
 
     internal virtual void hide() {
         try {
-            gaui.MoveOut(GUIAnimSystem.eGUIMove.Self);
+            gaui.PlayOutAnims(eGUIMove.Self);
         } catch (Exception e) {
             Debug.Log(gameObject.name);
         }

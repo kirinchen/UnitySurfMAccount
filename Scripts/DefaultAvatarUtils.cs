@@ -30,6 +30,9 @@ namespace com.surfm.account {
             return cache;
         }
 
+        internal static Bundle getDefault() {
+            return load()[0];
+        }
 
         public static List<Bundle> load() {
             return instance._load();

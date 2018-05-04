@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using surfm.tool;
 using surfm.tool.i18n;
 using UnityEngine.UI;
+using GUIAnimator;
 
 namespace com.surfm.account {
     public class AccountManager : MonoBehaviour {

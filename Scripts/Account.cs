@@ -32,11 +32,14 @@ namespace com.surfm.account {
         internal Account() {
             pid = UidUtils.getRandomString(12);
             userTitle = pid;
+            setAvatar(DefaultAvatarUtils.getDefault());
         }
 
         public void setAvatar(DefaultAvatarUtils.Bundle target) {
             avatar = string.Format("@{0}", target.path);
         }
+
+
 
         public static AvatarMode parseAvatarMode(string s) {
             if (string.IsNullOrEmpty(s)) return AvatarMode.NONE;
@@ -48,12 +51,21 @@ namespace com.surfm.account {
             setupAvatar(img, avatar);
         }
 
-        public static void setupAvatar(Image img, string ad) {
+        public Sprite getAvatarSpite() {
+            return loadSprite(avatar);
+        }
+
+        public static Sprite loadSprite(string ad) {
             AvatarMode am = parseAvatarMode(ad);
             if (am == AvatarMode.Default) {
                 string path = ad.Replace("@", "");
-                img.sprite = DefaultAvatarUtils.get(path).sprite;
+                return DefaultAvatarUtils.get(path).sprite;
             }
+            throw new NullReferenceException(am + "/" + ad);
+        }
+
+        public static void setupAvatar(Image img, string ad) {
+            img.sprite = loadSprite(ad);
         }
 
         public static string getPidByMail(string m) {
@@ -66,5 +78,10 @@ namespace com.surfm.account {
             if (loginResult == null) return false;
             return true;
         }
+
+        public static bool isSelf(string pid) {
+            return string.Equals(AccountLoader.getAccount().pid, pid);
+        }
+
     }
 }

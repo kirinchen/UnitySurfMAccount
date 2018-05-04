@@ -25,6 +25,14 @@ namespace com.surfm.account {
         }
 
         public void showChoose() {
+            showChoose(dialogManager, (a) => {
+                a.setupAvatar(img);
+                onChanged.Invoke();
+            });
+
+        }
+
+        public static void showChoose(DialogManager dialogManager, Action<Account> onChanged) {
             List<ChooseDialog.RowData> l = DefaultAvatarUtils.load().ConvertAll(a => {
                 return new ChooseDialog.RowData() {
                     sprite = a.sprite,
@@ -34,7 +42,11 @@ namespace com.surfm.account {
             });
             dialogManager.get<ChooseDialog>().
                 setData(l).
-                setCallback(onSelected).
+                setCallback((b, d) => {
+                    Account a = AccountLoader.getAccount();
+                    a.setAvatar((DefaultAvatarUtils.Bundle)d.target);
+                    onChanged(a);
+                }).
                 show(true);
         }
 
