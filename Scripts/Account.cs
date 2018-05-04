@@ -61,7 +61,7 @@ namespace com.surfm.account {
                 string path = ad.Replace("@", "");
                 return DefaultAvatarUtils.get(path).sprite;
             }
-            throw new NullReferenceException(am + "/" + ad);
+            return DefaultAvatarUtils.getDefault().sprite;
         }
 
         public static void setupAvatar(Image img, string ad) {
