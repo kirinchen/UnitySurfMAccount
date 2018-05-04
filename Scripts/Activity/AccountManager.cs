@@ -10,7 +10,7 @@ using GUIAnimator;
 namespace com.surfm.account {
     public class AccountManager : MonoBehaviour {
         private static AccountManager instance;
-        internal static ActivityConfig config { get;  set; }
+        internal static ActivityConfig config { get; set; }
         public DialogManager dm;
         public PageHandler loginPage;
         public PageHandler signupPage;
@@ -24,7 +24,7 @@ namespace com.surfm.account {
 
         void Awake() {
             instance = this;
-            if (config==null) config = ActivityConfig.LoadFromRepo();
+            if (config == null) config = ActivityConfig.LoadFromRepo();
             if (enabled) {
                 GSui.Instance.m_AutoAnimation = false;
             }
@@ -45,6 +45,12 @@ namespace com.surfm.account {
         public void switchSignupPage() { switchPage(signupPage); }
         public void switchHelloPage() { switchPage(helloPage); }
 
+
+        //void Update() {
+        //    if (Input.GetKeyUp(KeyCode.L)) {
+        //        Loading.getInstance().show(!Loading.getInstance().isShowed());
+        //    }
+        //}
 
         void Start() {
             refleshForLogin();
