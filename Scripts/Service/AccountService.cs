@@ -10,7 +10,6 @@ namespace com.surfm.account {
         private static AccountService instance;
         private URestApi rest;
         private Dictionary<ServiceHandle.Mode, ServiceHandle> _hmap = new Dictionary<ServiceHandle.Mode, ServiceHandle>();
-        private ItemService itemService;
 
         void Awake() {
             if (instance != null) {
@@ -130,14 +129,6 @@ namespace com.surfm.account {
 
         }
 
-        public ItemService getItemService() {
-            if (!isLogin()) throw new NullReferenceException("not login");
-            if (itemService == null) {
-                itemService = gameObject.AddComponent<ItemService>();
-                itemService.init(rest, relogin);
-            }
-            return itemService;
-        }
 
 
         private void loadSession() {
