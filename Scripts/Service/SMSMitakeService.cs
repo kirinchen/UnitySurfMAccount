@@ -1,4 +1,5 @@
-﻿using System;
+﻿using com.surfm.rest;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -30,9 +31,9 @@ namespace com.surfm.account {
             url.Append("&encoding=utf-16be");
             url.Append("&dstaddr=").Append(phone);
             url.Append("&smbody=").Append(WWW.EscapeURL(body));
-            api.get(url.ToString(), d => { done(); }, new URestApi.OnErrorB(b => {
-                errorCB(ErrorKind.Other);
-            }).onError);
+            //api.get(url.ToString(), d => { done(); }, new URestApi.OnErrorB(b => {
+            //    errorCB(ErrorKind.Other);
+            //}).onError);
         }
     }
 }
