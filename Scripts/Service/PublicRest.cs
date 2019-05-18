@@ -2,7 +2,6 @@
 using surfm.tool;
 
 using System;
-using UnityEngine;
 using static com.surfm.rest.URestApi;
 
 namespace com.surfm.account {
@@ -15,14 +14,14 @@ namespace com.surfm.account {
 
         }
 
-
-
         public void signUp(UserSignupFormDto dto, Action<Result> cb) {
             string urlTemp = "api/v1/public/signup";
-
-            
-
             restApi.postJson(urlTemp, dto, cb);
+        }
+
+        public void loginForGeneral(UserLoginFormDto dto,Action<RestResult<LoginResultDto>> b) {
+            string urlTemp = "api/v1/public/login?type=REST_API";
+            restApi.postJson(urlTemp, dto,r=> { b(new RestResult<LoginResultDto>(r)); });
         }
 
 
