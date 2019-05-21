@@ -8,7 +8,7 @@ public class TestRest : MonoBehaviour {
 
     void Start () {
         //rest = FindObjectOfType<URestApi>();
-        rest.authorization = "JSESSIONID=44D43A26339EFCD632CC0ADEFCE3FC67";
+        //rest.authorization = "JSESSIONID=44D43A26339EFCD632CC0ADEFCE3FC67";
     }
 
     public void onClick() {

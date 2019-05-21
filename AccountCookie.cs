@@ -22,6 +22,10 @@ namespace com.surfm.account {
             return JsonConvert.DeserializeObject<LoginResultDto>( ObscuredPrefs.GetString(KEY_LOGIN_SESSION));
         }
 
+        public string optSession() {
+            return ObscuredPrefs.HasKey(KEY_LOGIN_SESSION) ? loadLoginSession().jSessionId : null;
+        }
+
 
     }
 }

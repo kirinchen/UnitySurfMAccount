@@ -19,9 +19,9 @@ namespace com.surfm.account {
             restApi.postJson(urlTemp, dto, cb);
         }
 
-        public void loginForGeneral(UserLoginFormDto dto,Action<RestResult<LoginResultDto>> b) {
+        public void loginForGeneral(UserLoginFormDto dto,Action<TypeResult<LoginResultDto>> b) {
             string urlTemp = "api/v1/public/login?type=REST_API";
-            restApi.postJson(urlTemp, dto,r=> { b(new RestResult<LoginResultDto>(r)); });
+            restApi.postJson<LoginResultDto>(urlTemp, dto,b);
         }
 
 

@@ -28,7 +28,7 @@ namespace com.surfm.account {
 
         }
 
-        private void onResult(RestResult<LoginResultDto> r) {
+        private void onResult(TypeResult<LoginResultDto> r) {
             Debug.Log("onResult: " + r.result.errorMsg);
             if (r.result.succeed) {
                 LoginResultDto rDto =  r.getBody();
