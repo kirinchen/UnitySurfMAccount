@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEngine;
 
 namespace com.surfm.account {
     public class JsonMap : Dictionary<string, object> {
@@ -14,13 +15,13 @@ namespace com.surfm.account {
 
 
         public void toObjRecursively(Dictionary<string, object> d, object o, Func<FieldInfo, object, object> valueFunc = null) {
-            Type t = GetType();
+            Type t = o.GetType();
             FieldInfo[] fs = t.GetFields();
 
             foreach (string ks in d.Keys) {
 
                 object value = d[ks];
-                FieldInfo fd = t.GetField(ks);
+                FieldInfo fd = t.GetField(ks );
                 if (value is Dictionary<string, object>) {
                     toObjRecursively((Dictionary<string, object>)value, fd.GetValue(o), valueFunc);
                 } else {
