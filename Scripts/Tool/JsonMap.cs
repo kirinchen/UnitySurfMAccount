@@ -3,12 +3,11 @@ using surfm.tool;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using UnityEngine;
 
 namespace com.surfm.account {
     public class JsonMap : Dictionary<string, object> {
 
-            private static ObscuredValueConverter  obscuredValueConverter = new ObscuredValueConverter();
+        private static ObscuredValueConverter obscuredValueConverter = new ObscuredValueConverter();
 
         public object toObjByJson(Type t) {
             string json = JsonConvert.SerializeObject(this, Formatting.None, obscuredValueConverter);
@@ -32,11 +31,11 @@ namespace com.surfm.account {
             foreach (string ks in d.Keys) {
 
                 object value = d[ks];
-                FieldInfo fd = t.GetField(ks );
+                FieldInfo fd = t.GetField(ks);
                 if (value is Dictionary<string, object>) {
                     toObjRecursively((Dictionary<string, object>)value, fd.GetValue(o), valueFunc);
                 } else {
-                    fd.SetValue(o, getObj(fd,value, valueFunc));
+                    fd.SetValue(o, getObj(fd, value, valueFunc));
                 }
 
             }
