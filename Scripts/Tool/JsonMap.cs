@@ -9,6 +9,11 @@ namespace com.surfm.account {
 
         private static ObscuredValueConverter obscuredValueConverter = new ObscuredValueConverter();
 
+        public static JsonMap toJsonMap(object o) {
+            string json = JsonConvert.SerializeObject(o, obscuredValueConverter);
+            return JsonConvert.DeserializeObject<JsonMap>(json, ObscuredValueConverter.DEFAULT);
+        }
+
         public object toObjByJson(Type t) {
             string json = JsonConvert.SerializeObject(this, Formatting.None, obscuredValueConverter);
             return JsonConvert.DeserializeObject(json, t, obscuredValueConverter);
