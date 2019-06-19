@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static com.surfm.rest.URestApi;
@@ -6,34 +8,34 @@ using static com.surfm.rest.URestApi;
 namespace com.surfm.account {
     public class Signuper  {
 
-        private PublicRest publicRest = PublicRest.getInstance();
-        private Handler handler;
-        public Signuper(Handler s) {
-            handler = s;
+        private static Signuper _instance;
+        public static Signuper instance {
+            get {
+                if(_instance == null) _instance = new Signuper();
+                return _instance;
+            }
         }
 
+        private PublicRest publicRest = PublicRest.getInstance();
+        private Signuper() {        }
 
-        public void signup() {
 
+        public void signup(string email,string pass,Action<Result> cb = null) {
             UserSignupFormDto dto = new UserSignupFormDto();
-            dto.email = handler.getEmail();
-            dto.password = handler.getPassword();
-
-            publicRest.signUp(dto, onResult);
-
-
+            dto.email = email;
+            dto.password = pass;
+            publicRest.signUp(dto, r=> {
+                onResult(r);
+                cb?.Invoke(r);
+            } );
         }
 
         private void onResult(Result r) {
-            Debug.Log("onResult: " + r.errorMsg);
+            Debug.Log("onResult: " + JsonConvert.SerializeObject(r));
         }
 
 
 
-        public interface Handler {
-            string getEmail();
-            string getPassword();
-        }
 
     }
 }

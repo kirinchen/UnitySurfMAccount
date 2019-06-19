@@ -8,7 +8,7 @@ namespace com.surfm.account {
     public class PublicRest  {
 
         private static PublicRest instance;
-        private URestApi restApi = BeansRepo.bean<URestApi>(typeof(URestApi), "AccountServer");
+        private URestApi restApi = BeansRepo.bean<URestApi>( "AccountServer");
 
         private PublicRest() {
 

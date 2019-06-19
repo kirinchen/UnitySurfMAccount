@@ -10,6 +10,8 @@ namespace com.surfm.account {
 
         public static readonly string KEY_LOGIN_SESSION = "@LoginResult";
 
+        private LoginResultDto cache = null;
+
         private AccountCookie() { }
 
         public void saveLoginSession(LoginResultDto dto) {
@@ -19,7 +21,10 @@ namespace com.surfm.account {
         }
 
         public LoginResultDto loadLoginSession() {
-            return JsonConvert.DeserializeObject<LoginResultDto>( ObscuredPrefs.GetString(KEY_LOGIN_SESSION));
+            if (cache == null) {
+                cache = JsonConvert.DeserializeObject<LoginResultDto>(ObscuredPrefs.GetString(KEY_LOGIN_SESSION));
+            }
+            return cache;
         }
 
         public string optSession() {
