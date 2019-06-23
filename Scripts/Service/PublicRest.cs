@@ -32,6 +32,8 @@ namespace com.surfm.account {
             return instance;
         }
 
-
+        public void clean() {
+            instance = null;
+        }
     }
 }

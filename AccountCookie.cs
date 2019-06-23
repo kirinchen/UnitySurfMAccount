@@ -14,7 +14,13 @@ namespace com.surfm.account {
 
         private AccountCookie() { }
 
+        public void clean() {
+            cache = null;
+            ObscuredPrefs.DeleteKey(KEY_LOGIN_SESSION);
+        }
+
         public void saveLoginSession(LoginResultDto dto) {
+            clean();
             string js = JsonConvert.SerializeObject(dto);
             if (string.IsNullOrWhiteSpace(dto.jSessionId)) throw new System.Exception("not set jSessionId :"+ js);
             ObscuredPrefs.SetString(KEY_LOGIN_SESSION, js);
