@@ -3,8 +3,8 @@ using System.Collections;
 namespace com.surfm.account {
     public class UserObjT<T> {
 
-        private UserObjDto raw;
-        private T obj;
+        public UserObjDto raw;
+        public T obj;
 
         public UserObjT(UserObjDto r) {
             raw = r;
