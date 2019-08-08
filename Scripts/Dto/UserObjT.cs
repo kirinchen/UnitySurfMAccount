@@ -6,8 +6,11 @@ namespace com.surfm.account {
         public UserObjDto raw;
         public T obj;
 
+        public UserObjT() { }
+
         public UserObjT(UserObjDto r) {
             raw = r;
+
         }
 
         public T getObj() {
