@@ -3,6 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static surfm.dreamon.PlayerDao;
+
 namespace com.surfm.account {
     public class UserObjDto  {
         public string raceUid;
@@ -14,5 +16,11 @@ namespace com.surfm.account {
         public bool combined;
         public JsonMap data;
         public double amount;
+
+
+        public PlayerTObj toPlayerTObj() {
+            return new PlayerTObj(this);
+        }
+
     }
 }
