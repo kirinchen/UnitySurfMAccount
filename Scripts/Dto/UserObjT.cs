@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-namespace com.surfm.account {
+﻿namespace com.surfm.account {
     public class UserObjT<T> {
 
         public UserObjDto raw;
@@ -17,6 +15,11 @@ namespace com.surfm.account {
             if (obj == null) obj = raw.data.toObjByJson<T>();
             return obj;
         }
+
+        public void saveByObj() {
+            raw.data = JsonMap.toJsonMap(obj);
+        }
+
 
         public UserObjDto getRaw() {
             return raw;
