@@ -1,4 +1,5 @@
 ﻿using com.surfm.account;
+using surfm.dreamon;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,6 +21,10 @@ namespace com.surfm.account {
 
         public PlayerTObj toPlayerTObj() {
             return new PlayerTObj(this);
+        }
+
+        public ETCItemTObj toETCItemTObj() {
+            return new ETCItemTObj(this);
         }
 
     }
