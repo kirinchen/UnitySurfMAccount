@@ -8,9 +8,11 @@ namespace com.surfm.account {
 
         [BeanAttribute( name = "AccountServer" )]
         public URestApi accountRest() {
+            string env = ConstantRepo.getInstance().opt<string>("env", "");
+            env = string.IsNullOrEmpty(env) ? "." : "." + env + ".";
             URestApi ans = new URestApi();
-            ans.host = ConstantRepo.getInstance().get<string>("account.server.host");
-            ans.port = ConstantRepo.getInstance().get<string>("account.server.port");
+            ans.host = ConstantRepo.getInstance().get<string>("account.server" + env + "host");
+            ans.port = ConstantRepo.getInstance().get<string>("account.server" + env + "port");
             return ans;
 
         }
