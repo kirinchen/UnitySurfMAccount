@@ -1,5 +1,5 @@
 ﻿namespace com.surfm.account {
-    public class UserObjT<T> {
+    public class UserObjT<T> : UserObjTI {
 
         public UserObjDto raw;
         public T obj;
@@ -27,5 +27,9 @@
 
 
 
+    }
+
+    public interface UserObjTI {
+        UserObjDto getRaw();
     }
 }
