@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using Newtonsoft.Json;
-using CodeStage.AntiCheat.ObscuredTypes;
+using CodeStage.AntiCheat.Storage;
 
 namespace com.surfm.account {
     public class AccountCookie  {
