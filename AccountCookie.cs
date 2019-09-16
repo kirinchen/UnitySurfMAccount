@@ -6,7 +6,7 @@ using CodeStage.AntiCheat.Storage;
 namespace com.surfm.account {
     public class AccountCookie  {
 
-        public static readonly AccountCookie instance = new AccountCookie();
+        private static  AccountCookie _instance = null;
 
         public static readonly string KEY_LOGIN_SESSION = "@LoginResult";
 
@@ -35,6 +35,15 @@ namespace com.surfm.account {
 
         public string optSession() {
             return ObscuredPrefs.HasKey(KEY_LOGIN_SESSION) ? loadLoginSession().jSessionId : null;
+        }
+
+        public static AccountCookie instance {
+            get {
+                if (_instance == null) {
+                    _instance = new AccountCookie();
+                }
+                return _instance;
+            }
         }
 
 

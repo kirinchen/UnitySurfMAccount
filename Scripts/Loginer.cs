@@ -36,11 +36,15 @@ namespace com.surfm.account {
         }
 
         private void onResult(TypeResult<LoginResultDto> r) {
-            Debug.Log("onResult: " + r.result.errorMsg);
+            Debug.Log("onResult: "+r.result.succeed+" "+r.result.response.DataAsText+" " + r.result.errorMsg);
             if (r.result.succeed) {
-                LoginResultDto rDto =  r.getBody();
-                AccountCookie.instance.saveLoginSession(rDto);
-                handler.onLogined(rDto);
+                try {
+                    LoginResultDto rDto =  r.getBody();
+                    AccountCookie.instance.saveLoginSession(rDto);
+                    handler.onLogined(rDto);
+                } catch (Exception e) {
+                    Debug.Log("onResult: "+ AccountCookie.instance+" e:"+e.ToString());
+                }
             } else {
                 handler.onLoginFail(r.result);
             }
