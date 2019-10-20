@@ -16,7 +16,7 @@ namespace com.surfm.account {
             }
         }
 
-        private PublicRest publicRest = PublicRest.getInstance();
+        private PublicRest publicRest { get { return PublicRest.getInstance(); } } 
         private Signuper() {        }
 
 

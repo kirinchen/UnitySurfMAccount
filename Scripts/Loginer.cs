@@ -11,7 +11,7 @@ using static com.surfm.rest.URestApi;
 namespace com.surfm.account {
     public class Loginer {
 
-        private PublicRest publicRest = PublicRest.getInstance();
+        private PublicRest publicRest { get { return PublicRest.getInstance(); } }  
         private static Loginer _instance;
         public static Loginer instance {
             get {
