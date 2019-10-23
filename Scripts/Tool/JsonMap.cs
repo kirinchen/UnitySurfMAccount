@@ -29,6 +29,10 @@ namespace com.surfm.account {
             return t;
         }
 
+        public string toJson() {
+            return CommUtils.toJson(this);
+        }
+
         public void toObjRecursively(Dictionary<string, object> d, object o, Func<FieldInfo, object, object> valueFunc = null) {
             Type t = o.GetType();
             FieldInfo[] fs = t.GetFields();
